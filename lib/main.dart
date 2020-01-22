@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: ChangeNotifierProvider(
-        builder: (BuildContext context) => DataState(),
+        create: (BuildContext context) => DataState(),
         child: ListDemo(),
       ),
     );
@@ -69,7 +69,7 @@ class _ListDemoState extends State<ListDemo> {
     var currentPosition = _controller.position.pixels;
 
     if (currentPosition > maxScroll - 100) {
-      var state = Provider.of<DataState>(context);
+      var state = Provider.of<DataState>(context, listen: false);
 
       state.loadNextPage();
     }
